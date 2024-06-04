@@ -1,6 +1,6 @@
 import { Link, Slot, Stack, useRouter } from "expo-router";
 import { useEffect } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import {  Text, View } from "react-native";
 
 export default function App() {
   const router = useRouter();

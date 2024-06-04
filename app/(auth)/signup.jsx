@@ -2,10 +2,13 @@ import React, { useState } from "react";
 import { Button, Pressable, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import InputWithIcon from "../components/inputWithIcon";
+import { router } from "expo-router";
 
 const Login = () => {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [fullName, setFullName] = useState("");
+
   const onPressIn = () => {
     console.log("Press In");
   };
@@ -13,12 +16,15 @@ const Login = () => {
   const onPressOut = () => {
     console.log("Press Out");
   };
-
+  const handleGoToSignIn = () => {
+    router.push("/login");
+  }
   const onPress = () => {
     alert("Pressable Button pressed!");
   };
   return (
     <SafeAreaView>
+      {/* <RootLayout> */}
       <View className="relative bg-orange-400 h-screen">
         <View className="bg-white h-[80vh] mt-[20vh] sticky rounded-t-3xl flex-col items-center">
           <View className="flex-row justify-center mt-8">
@@ -32,21 +38,21 @@ const Login = () => {
           <InputWithIcon
             iconName="person"
             placeholder="Full Name"
-            value={email}
-            onChangeText={setEmail}
+            value={fullName}
+            onChangeText={setFullName}
           />
           <InputWithIcon
             iconName="phone"
             placeholder="Phone Number"
-            value={password}
-            onChangeText={setPassword}
+            value={phoneNumber}
+            onChangeText={setPhoneNumber}
             secureTextEntry
           />
           <InputWithIcon
             iconName="email"
             placeholder="example@email.com"
-            value={password}
-            onChangeText={setPassword}
+            value={email}
+            onChangeText={setEmail}
             secureTextEntry
           />
           <Pressable
@@ -60,9 +66,8 @@ const Login = () => {
           <Text className="my-3 mb-10 text-gray-600 font-semibold">OR</Text>
           <Text className="text-gray-500 mb-4">If you have a PMG account</Text>
           <Pressable
-            onPressIn={onPressIn}
+            onPressIn={handleGoToSignIn}
             onPressOut={onPressOut}
-            onPress={onPress}
             className="bg-orange-400 items-center my-4 w-[80vw] py-4 px-3 rounded-lg"
           >
             <Text className="text-white font-extrabold text-lg">Sign In</Text>
@@ -70,6 +75,7 @@ const Login = () => {
           <Text>Don't have an account?<Text className="text-orange-400 font-semibold">Register</Text></Text>
         </View>
       </View>
+      {/* </RootLayout> */}
     </SafeAreaView>
   );
 };
