@@ -8,8 +8,8 @@ import { Link } from "expo-router";
 const Home = () => {
   return (
     <SafeAreaView>    
-        <View className="bg-orange-500 h-screen">
-          <View className="flex-row bg-white items-center w-9/12 rounded-3xl mx-auto my-40 p-1">
+        <View className="bg-orange-500 h-screen flex flex-col items-center">
+          <View className="flex-row bg-white  items-center w-9/12 rounded-3xl mx-auto my-40 p-1">
             <MaterialIcons name="search" size={40} color={"orange"}/>
             <TextInput
               placeholder="Search your preferred restaurant"
