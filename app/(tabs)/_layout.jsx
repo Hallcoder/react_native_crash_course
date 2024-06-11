@@ -1,9 +1,10 @@
 import { Tabs } from "expo-router";
 import { View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { Feather } from "@expo/vector-icons";
-import { FontAwesome } from "@expo/vector-icons";
+import { MaterialIcons } from "@expo/vector-icons";
+import { FontAwesome5 } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
+
 const TabsLayout = () => {
   return (
     <>
@@ -12,46 +13,46 @@ const TabsLayout = () => {
           tabBarShowLabel: false,
         }}
       >
+        {/* <Tabs.Screen
+          name="menu"
+          options={{
+            headerShown: false,
+            tabBarIcon: ({ focused }) => (
+              <View className="items-center justify-center gap-22">
+                <AntDesign
+                  name="home"
+                  size={25}
+                  color={focused ? "#3EB075" : "#484848"}
+                />
+              </View>
+            ),
+          }}
+        /> */}
+        <Tabs.Screen
+          name="restaurant-list"
+          options={{
+            headerShown: false,
+            tabBarIcon: ({ focused }) => (
+              <View className="items-center justify-center gap-22">
+                <FontAwesome5
+                  name="hamburger"
+                  size={24}
+                  color={focused ? "#3EB075" : "#484848"}
+                />
+              </View>
+            ),
+          }}
+        />
         <Tabs.Screen
           name="notifications"
           options={{
             headerShown: false,
             tabBarIcon: ({ focused }) => (
               <View className="items-center justify-center gap-22">
-                <FontAwesome
-                  name="bell-o"
-                  size={23}
-                  color={focused ? "#f7941d" : "#484848"}
-                />
-              </View>
-            ),
-          }}
-        />
-        <Tabs.Screen
-          name="restaurants"
-          options={{
-            headerShown: false,
-            tabBarIcon: ({ focused }) => (
-              <View className="items-center justify-center gap-22">
-                <Ionicons
-                  name="restaurant-outline"
+                <FontAwesome5
+                  name="bell"
                   size={24}
-                  color={focused ? "#f7941d" : "#484848"}
-                />
-              </View>
-            ),
-          }}
-        />
-        <Tabs.Screen
-          name="recents"
-          options={{
-            headerShown: false,
-            tabBarIcon: ({ focused }) => (
-              <View className="items-center justify-center gap-22">
-                <Feather
-                  name="clock"
-                  size={24}
-                  color={focused ? "#f7941d" : "#484848"}
+                  color={focused ? "#3EB075" : "#484848"}
                 />
               </View>
             ),
@@ -66,22 +67,22 @@ const TabsLayout = () => {
                 <AntDesign
                   name="shoppingcart"
                   size={24}
-                  color={focused ? "#f7941d" : "#484848"}
+                  color={focused ? "#3EB075" : "#484848"}
                 />
               </View>
             ),
           }}
         />
         <Tabs.Screen
-          name="cardPayment"
+          name="checkout"
           options={{
             headerShown: false,
             tabBarIcon: ({ focused }) => (
               <View className="items-center justify-center gap-22">
-                <AntDesign
-                  name="wallet"
+                <MaterialIcons
+                  name="shopping-cart-checkout"
                   size={24}
-                  color={focused ? "#f7941d" : "#484848"}
+                  color={focused ? "#3EB075" : "#484848"}
                 />
               </View>
             ),
@@ -91,4 +92,5 @@ const TabsLayout = () => {
     </>
   );
 };
+
 export default TabsLayout;

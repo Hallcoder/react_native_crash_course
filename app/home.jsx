@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, TextInput, View } from "react-native";
+import { Button, Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -17,9 +17,9 @@ const Home = () => {
             />
           </View>
           <Text className="font-bold text-xl mx-auto">OR</Text>
-          <Link href="/restaurant-list">
-          <MaterialCommunityIcons name="qrcode" size={160} className="mx-auto my-10"/></Link >
+          <MaterialCommunityIcons name="qrcode" size={160} className="mx-auto my-10"/>
           <Text className="font-bold text-xl mx-auto">Scan, Pay & Enjoy!</Text>
+          <Link href={"/restaurant-list"} className="border p-3 border-gray-300 rounded-md bg-gray-300 m-2 "><Pressable ><Text>Go to Restaurants</Text></Pressable></Link>
         </View>
     </SafeAreaView>
   );
