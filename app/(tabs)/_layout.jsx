@@ -29,13 +29,13 @@ const TabsLayout = () => {
           }}
         /> */}
         <Tabs.Screen
-          name="restaurant-list"
+          name="home"
           options={{
             headerShown: false,
             tabBarIcon: ({ focused }) => (
               <View className="items-center justify-center gap-22">
                 <FontAwesome5
-                  name="hamburger"
+                  name="home"
                   size={24}
                   color={focused ? "#3EB075" : "#484848"}
                 />

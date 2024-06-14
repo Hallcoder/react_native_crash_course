@@ -1,84 +1,101 @@
 import React, { useState } from "react";
-import { Image, Text, View, Pressable } from "react-native";
+import { Image, Text, View, ScrollView, Pressable } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import InputWithIcon from "../components/inputWithIcon";
 import google from "../../assets/google.jpg";
 import facebook from "../../assets/facebook.png";
 import { Link, router } from "expo-router";
+import axios from "axios";
+import Toast from "react-native-toast-message";
 
 const login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setLoading] = useState(false);
   const onPressIn = () => {
-    console.log("Press In");
+    setLoading(true);
+    axios
+      .post(
+        "http://10.5.221.205:3001/auth/login",
+        { email, password },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then((d) => {
+        Toast.show({
+          type: "success",
+          text1: "Logged In Successfully!",
+        });
+        console.log(d.data);
+        router.push("home");
+      })
+      .catch((err) => {
+        Toast.show({
+          type: "error",
+          text1: "Something went wrong!",
+        })
+        console.log("Error", err.message);
+      }).finally(() => {
+        setLoading(false);
+      });;
   };
-  const onPress = () => {
-    console.log("on press");
-  };
-  const onPressOut = () => {
-    console.log("Press Out");
-  };
-  const handleSignIn = () =>{
-    router.push("/home")
-  }
-  return (
 
-    <SafeAreaView>
-      {/* <RootLayout> */}
-      <View className="relative bg-orange-400 h-screen">
-        <View className="bg-white h-[80vh] mt-[20vh] sticky rounded-t-3xl flex-col items-center">
-            <View className="flex-row justify-center mt-8">
-              <Text className="text-6xl font-extrabold">Supa</Text>
-              <Text className="text-6xl text-orange-400 font-extrabold">
-                Menu
-              </Text>
-            </View>
-            <Text className="font-semibold my-4">Welcome...</Text>
-            <Text className="text-gray-400">Please fill the information</Text>
-            <InputWithIcon
-              iconName="person"
-              placeholder="Your email"
-              value={email}
-              onChangeText={setEmail}
-            />
-            <InputWithIcon
-              iconName="lock"
-              placeholder="Password"
-              value={password}
-              onChangeText={setPassword}
-              secureTextEntry
-            />
-            <Pressable        
-              onPress={handleSignIn}
-              className="bg-orange-400 items-center my-4 w-[80vw] py-4 px-3 rounded-lg"
-            >
-              <Text className="text-white font-extrabold text-lg">Sign In</Text>
-            </Pressable>
-            <Text>OR</Text>
-            <Pressable className="w-[80vw] justify-center rounded-md flex mt-8 flex-row items-center border py-3 mx-4">
-              <Image
-                source={google}
-                className="bg-orange-200 m-1 h-5 w-5"
-              ></Image>
-              <Text>Login with Google</Text>
-            </Pressable>
-            <Pressable className="w-[80vw] justify-center rounded-md flex my-8 flex-row items-center border py-3 mx-4">
-              <Image
-                source={facebook}
-                className="bg-orange-200 m-1 h-5 w-5"
-              ></Image>
-              <Text>Login with Facebook</Text>
-            </Pressable>
-            <Text>Forgot Password</Text>
-            <Text>
-              Don't have an account?
-              <Link href="/signup" className="text-orange-500">
-                Register
-              </Link>
-            </Text>
+  return (
+    <ScrollView className="flex-1 bg-orange-400  mb-4 h-fit">
+      <View className="bg-white mt-[20vh] items-center sticky rounded-t-3xl flex-col">
+        <View className="flex-row justify-center mt-8">
+          <Text className="text-6xl font-extrabold">Supa</Text>
+          <Text className="text-6xl text-orange-400 font-extrabold">Menu</Text>
         </View>
+        <Text className="font-semibold my-4">Welcome...</Text>
+        <Text className="text-gray-400">Please fill the information</Text>
+        <InputWithIcon
+          iconName="person"
+          placeholder="Your email"
+          value={email}
+          onChangeText={setEmail}
+        />
+        <InputWithIcon
+          iconName="lock"
+          placeholder="Password"
+          value={password}
+          onChangeText={setPassword}
+          secureTextEntry
+        />
+        <Link href={"initiate-reset"} className="text-sm text-orange-500">
+          Forgot Password?
+        </Link>
+        <Pressable
+          onPress={onPressIn}
+          className="bg-orange-400 items-center my-4 w-[80vw] py-4 px-3 rounded-lg"
+        >
+          <Text className="text-white font-extrabold text-lg">{isLoading ? "Loading...":"Sign In"}</Text>
+        </Pressable>
+        <Text>OR</Text>
+        <Pressable className="w-[80vw] justify-center rounded-md flex mt-8 flex-row items-center border py-3 mx-4">
+          <Image source={google} className="bg-orange-200 m-1 h-5 w-5"></Image>
+          <Text>Login with Google</Text>
+        </Pressable>
+        <Pressable className="w-[80vw] justify-center rounded-md flex my-8 flex-row items-center border py-3 mx-4">
+          <Image
+            source={facebook}
+            className="bg-orange-200 m-1 h-5 w-5"
+          ></Image>
+          <Text>Login with Facebook</Text>
+        </Pressable>
+        <Text>
+          Don't have an account?
+          <Link href="/signup" className="text-orange-500 mb-2">
+            Register
+          </Link>
+        </Text>
       </View>
-    </SafeAreaView>
+      <Toast />
+    </ScrollView>
+    // </SafeAreaView>
   );
 };
 

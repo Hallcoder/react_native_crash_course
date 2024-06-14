@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 const InputWithIcon = ({ iconName, placeholder, value, onChangeText, secureTextEntry }) => {
   return (
     <View className="flex-row p-2 border border-gray-100 m-1 rounded-md justify-center items-center">
-    <Icon name={iconName} size={30} className="text-gray-400"/>
+    <Icon name={iconName} size={30} color={"gray"}/>
     <TextInput
       placeholder={placeholder}
       value={value}
