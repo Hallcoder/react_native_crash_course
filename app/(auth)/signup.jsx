@@ -11,11 +11,18 @@ const Login = () => {
   const [name, setName] = useState("Hamisi");
   const [isLoading, setLoading] = useState(false);
   const onPressIn = () => {
-    console.log({ email, name, password });
+    if (!email || !password || !name) {
+      Toast.show({
+        type: "error",
+        text1: "Validation Error",
+        text2: "Fill out all the required information",
+      });
+      return;
+    }
     setLoading(true);
     axios
       .post(
-        "http://10.5.221.205:3001/user/register",
+        "http://10.5.223.160:3001/user/register",
         { email, name, password },
         {
           headers: {
@@ -29,17 +36,18 @@ const Login = () => {
           text1: d.data.message,
         });
         console.log(d.data);
-        setLoading(false);
         router.push("login");
       })
       .catch((err) => {
         Toast.show({
           type: "error",
           text1: "Something went wrong!",
-        }).finally(() => {
-          setLoading(false);
+          text2: err.message,
         });
         console.log("Error", err.message);
+      })
+      .finally(() => {
+        setLoading(false);
       });
   };
 
@@ -79,11 +87,10 @@ const Login = () => {
         />
         <Pressable
           onPressIn={onPressIn}
-          onPressOut={onPressOut}
           className="bg-orange-400 items-center my-2 w-[80vw] py-4 px-3 rounded-lg"
         >
           <Text className="text-white font-extrabold text-lg">
-            {isLoading ? "Loading" : "Proceed"}
+            {isLoading ? "Loading..." : "Proceed"}
           </Text>
         </Pressable>
         <Text className="my-3 mb-4 text-gray-600 font-semibold">OR</Text>

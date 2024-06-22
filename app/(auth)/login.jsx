@@ -7,16 +7,25 @@ import facebook from "../../assets/facebook.png";
 import { Link, router } from "expo-router";
 import axios from "axios";
 import Toast from "react-native-toast-message";
+import { storeToken } from "../utils/storage";
 
 const login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setLoading] = useState(false);
   const onPressIn = () => {
+    if(!email || !password) {
+      Toast.show({
+        type:'error',
+        text1:"Validation Error",
+        text2:"Fill out all the required information"
+      });
+      return;
+    }
     setLoading(true);
     axios
       .post(
-        "http://10.5.221.205:3001/auth/login",
+        "http://10.5.223.160:3001/auth/login",
         { email, password },
         {
           headers: {
@@ -30,14 +39,15 @@ const login = () => {
           text1: "Logged In Successfully!",
         });
         console.log(d.data);
+        storeToken(d.data.token);
         router.push("home");
       })
       .catch((err) => {
         Toast.show({
           type: "error",
-          text1: "Something went wrong!",
+          text1: err.message,
         })
-        console.log("Error", err.message);
+        console.log("Error", err);
       }).finally(() => {
         setLoading(false);
       });;
@@ -69,7 +79,7 @@ const login = () => {
           Forgot Password?
         </Link>
         <Pressable
-          onPress={onPressIn}
+          onPressIn={onPressIn}
           className="bg-orange-400 items-center my-4 w-[80vw] py-4 px-3 rounded-lg"
         >
           <Text className="text-white font-extrabold text-lg">{isLoading ? "Loading...":"Sign In"}</Text>
