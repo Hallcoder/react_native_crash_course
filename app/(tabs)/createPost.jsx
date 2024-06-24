@@ -12,7 +12,6 @@ const Checkout = () => {
   const createPost = (values) =>{
     setLoading(true)
     axios.post(`${process.env.EXPO_PUBLIC_API_URL}/posts`,values).then(d =>{
-      console.log(d.data);
       router.push("Posts");
     }).catch(err =>{
       console.log(err);
