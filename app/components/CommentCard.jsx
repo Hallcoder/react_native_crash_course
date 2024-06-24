@@ -12,7 +12,6 @@ const CommentCard = ({comment}) => {
     setLoading(true);
    axios.get(`${process.env.EXPO_PUBLIC_API_URL}/users/${comment.userId}`).then(d =>{
     setUser(d.data);
-    console.log("Comment",comment)
    }).catch(err =>{
     console.log(err)
    }).finally(()=>{

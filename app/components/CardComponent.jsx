@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useRouter } from 'expo-router';
 import Toast from 'react-native-toast-message';
  
-const CardComponent = ({post}) => {
+const CardComponent = ({post,commentPage}) => {
   const [user,setUser] = useState({name:""});
   const router = useRouter();
 const [loading,setLoading] = useState(false);
@@ -29,7 +29,7 @@ router.push(`/post-details/${post.id}`);
       <Text className="font-semibold text-sm">{post.title}</Text>
       <Text className="text-xs">{post.body}</Text>
      <Text className="my-2 mx- text-xs">Post created by <Text className='font-semibold'>{user.name}</Text></Text>
-      <Pressable onPress={goToPostDetails} className="m-auto bg-gray-700 p-2 w-11/12 rounded-md"><Text className="text-white text-center">View Details</Text></Pressable>
+      {!commentPage && <Pressable onPress={goToPostDetails} className="m-auto bg-gray-700 p-2 w-11/12 rounded-md"><Text className="text-white text-center">View Details</Text></Pressable>}
     </View>:<Text>user...</Text>}
 };
 
