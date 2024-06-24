@@ -58,8 +58,8 @@ const Login = () => {
     router.push("/login");
   };
   return (
-    <ScrollView className="flex-1 bg-orange-400 h-fit">
-      <View className="bg-white mt-[13vh] items-center sticky rounded-t-3xl flex-col">
+    <ScrollView className="bg-orange-400 h-fit">
+      <View className="bg-white mt-[13vh] flex-1 h-screen items-center sticky rounded-t-3xl flex-col">
         <View className="flex-row justify-center mt-8">
           <Text className="text-6xl font-extrabold">Supa</Text>
           <Text className="text-6xl text-orange-400 font-extrabold">Menu</Text>

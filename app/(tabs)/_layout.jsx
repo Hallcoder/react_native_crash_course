@@ -29,9 +29,8 @@ const TabsLayout = () => {
           }}
         /> */}
         <Tabs.Screen
-          name="home"
+          name="Posts"
           options={{
-            headerShown: false,
             tabBarIcon: ({ focused }) => (
               <View className="items-center justify-center gap-22">
                 <FontAwesome5
@@ -44,43 +43,13 @@ const TabsLayout = () => {
           }}
         />
         <Tabs.Screen
-          name="notifications"
+          name="createPost"
           options={{
             headerShown: false,
             tabBarIcon: ({ focused }) => (
               <View className="items-center justify-center gap-22">
                 <FontAwesome5
-                  name="bell"
-                  size={24}
-                  color={focused ? "#3EB075" : "#484848"}
-                />
-              </View>
-            ),
-          }}
-        />
-        <Tabs.Screen
-          name="cart"
-          options={{
-            headerShown: false,
-            tabBarIcon: ({ focused }) => (
-              <View className="items-center justify-center gap-22">
-                <AntDesign
-                  name="shoppingcart"
-                  size={24}
-                  color={focused ? "#3EB075" : "#484848"}
-                />
-              </View>
-            ),
-          }}
-        />
-        <Tabs.Screen
-          name="checkout"
-          options={{
-            headerShown: false,
-            tabBarIcon: ({ focused }) => (
-              <View className="items-center justify-center gap-22">
-                <MaterialIcons
-                  name="shopping-cart-checkout"
+                  name="plus"
                   size={24}
                   color={focused ? "#3EB075" : "#484848"}
                 />

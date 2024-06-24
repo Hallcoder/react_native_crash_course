@@ -23,9 +23,10 @@ const login = () => {
       return;
     }
     setLoading(true);
+    console.log(process.env.EXPO_PUBLIC_API_URL)
     axios
       .post(
-        "http://10.5.223.160:3001/auth/login",
+        `${process.env.EXPO_PUBLIC_API_URL}/auth/login`,
         { email, password },
         {
           headers: {

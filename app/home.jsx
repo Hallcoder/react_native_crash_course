@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, ScrollView, Button, Modal, Pressable } from "react-native";
-import MyAppBar from "../components/appBar";
-import CardComponent from "../components/CardComponent";
-import { getToken } from "../utils/storage";
+import MyAppBar from "./components/appBar";
+import CardComponent from "./components/CardComponent";
+import { getToken } from "./utils/storage";
 import { useRouter } from "expo-router";
 
 const Home = () => {
